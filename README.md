@@ -176,9 +176,10 @@ The user should see the following in the console:
 Use the _**huge**_ example array below to do the following.
 
 1. Create a version of the array where all the objects that aren't English (the `Language` property does not equal to `en`) have been `.filter()`ed out.
-2. Use `.forEach()` to print out only the French entries (`Language === 'fr'`).
+1. Use `.filter()` to create a version of the array that has only the "English" objects (i.e. the `Language` property is equal to `en`).
+2. Using `.forEach()` with some control flow, print out only strings for the French objects (`Language === 'fr'`).
 3. Use `.every()` to confirm that no `TagID` is `0`.
-4. Use `.some()` to determine whether or not there is an object with `TagID` === `46`
+4. Use `.some()` to determine whether or not there is an object with `TagID === 46`
 5. Use `.map()` to create a new array based on the one below.  The new array will have strings formatted with the `TagName` and then the `Language` in parentheses. For example, the first element in the array should be the following string:     
     `Walt Disney World (en)`
 
