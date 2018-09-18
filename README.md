@@ -1,89 +1,102 @@
-# Pokemon-HW
-![ga](http://mobbook.generalassemb.ly/ga_cog.png)
+![GA logo](https://camo.githubusercontent.com/6ce15b81c1f06d716d753a61f5db22375fa684da/68747470733a2f2f67612d646173682e73332e616d617a6f6e6177732e636f6d2f70726f64756374696f6e2f6173736574732f6c6f676f2d39663838616536633963333837313639306533333238306663663535376633332e706e67)
 
-# wdi-cc2 _funky-ducks_
+# Pokemon-HW
 
 <hr>
-Title: Pokeman Game<br>
+
+Title: Pokemon Game<br>
 Type: Lab/HW<br>
-Duration: 3 hr<br>
 Creator: WDI-Archer, WDI-Funke <br>
-Adapted + Modified by: Jim Haff<br>
+Adapted + Modified by: Jim Haff and Reuben Ayres<br>
 Topics: Using objects, the keyword `this` and methods to create a game while focusing on OOP, array filter<br>
+
 <hr>
 
 ![pokemon cards](https://i.ytimg.com/vi/5pDthGSHo58/maxresdefault.jpg)
 
 <hr>
 
-You are going to create a simple card game in which a player will be able to battle the autoplayer. The game will keep an array of cards and will deal 3 as the autoplayer to "fight" against the three that you play. Each of your cards will have some values associated with it. You will have to compare the value of your card to the computer's card to see which one wins.
-
-Inside your folder for today, create a folder called `pokemon_card_app_lab_` with our file structure.
-
 
 ## Object Oriented Programming
 
 For this lab, we're going to continue using objects, giving them data and behaviors (methods). They will interact with one another to make our game work!
 
+## The basic idea
+
+You are going to create a simple card game in which a player will be able to battle the autoplayer.  The game will deal 3 cards (each of which has a damage value) to the player and three cards to the autoplayer.  The player will choose a card, and the computer will randomly choose a card, and whichever's card has the highest value will win the point.  A round is finished once this has happened three times. 
+
+
 ## The Cards
-Use the following data for your cards:
+
+Here is the array of cards.  Instructions below.
+
+```javascript
+[
+  {
+    name: "Bulbasaur",
+    damage: 60
+  }, {
+    name: "Caterpie",
+    damage: 40
+  }, {
+    name: "Charmander",
+    damage: 60
+  }, {
+    name: "Clefairy",
+    damage: 50
+  }, {
+    name: "Jigglypuff",
+    damage: 60
+  }, {
+    name: "Mankey",
+    damage: 30
+  }, {
+    name: "Meowth",
+    damage: 60
+  }, {
+    name: "Nidoran - female",
+    damage: 60
+  }, {
+    name: "Nidoran - male",
+    damage: 50
+  }, {
+    name: "Oddish",
+    damage: 40
+  }, {
+    name: "Pidgey",
+    damage: 50
+  }, {
+    name: "Pikachu",
+    damage: 50
+  }, {
+    name: "Poliwag",
+    damage: 50
+  }, {
+    name: "Psyduck",
+    damage: 60
+  }, {
+    name: "Rattata",
+    damage: 30
+  }, {
+    name: "Squirtle",
+    damage: 60
+  }, {
+    name: "Vulpix",
+    damage: 50
+  }, {
+    name: "Weedle", 
+    damage: 40
+  }
+]
 ```
-[{name: "Bulbasaur", damage:60}, {name: "Caterpie", damage:40},{name: "Charmander", damage:60},{name: "Clefairy", damage:50},{name: "Jigglypuff", damage:60},{name: "Mankey", damage:30},{name: "Meowth", damage:60},{name: "Nidoran - female", damage:60},{name: "Nidoran - male", damage:50},{name: "Oddish", damage:40},{name: "Pidgey", damage:50},{name: "Pikachu", damage:50},{name: "Poliwag", damage:50},{name: "Psyduck", damage:60},{name: "Rattata", damage:30}, {name: "Squirtle", damage:60}, {name: "Vulpix", damage:50}, {name: "Weedle", damage:40}]
-```
 
-# Step-by-Step
-
-
-## The Game object
-
-NOTE: Think about the best datatype (number, string, array, object) for each part and whether you need to create a method.
-
-The game should be able to:
-
-1. keep a library of all the Pokemon cards that can be played (see the array in the "The Cards" section)
-2. know what cards have been played
-3. know how many cards are left to be played overall
-4. track points for both the player and the computer
-  Note: Points are determine by the following: If the player's card beats the computer's card, the player gets one point (and vice versa). If there is a tie, no one gets a point.
-5. track rounds
-6. track number of rounds won for both player and computer
-7. automatically deal 3 cards from the library to the player and 3 cards to the computer each round
-8. determine the winner of each play
-9. stop once there are no cards left or not enough to deal 3 to each the player and computer
-
-
-## The Player object
-
-### The player should be able to:
-
-1. see their stats: their points and how many rounds they've won.
-2. see what cards they have been dealt by the game that round.
-3. pick a card from the hand that has been dealt to them. Play this card agaist the computer's card. Do this again (3 times total) until the round end.
-4. recieive new cards given to them by the game each round.
-5. see the cards that they have played in the past.
-
-
-## The View
-
-You can do the following in your terminal at first. If there's time, figure out how to display this in your browser (think back to Fundamentals and the Memory Game).
-
-Your game should show:
-
-- the scoreboard each round
-- the cards in the player's hand
-- the cards in the computer's hand
-- the cards that are in play
-- display who wins each round (or if there is a tie)
-- display when the game is over and the final score.
-
-
-# Example Play
+## Example Play
 
 - There are 10 Pokemon cards in the deck
 - Eggbert (the player) is dealt three random cards from the deck
 - The computer is dealt three random cards from the deck
-- Eggbert chooses a card and plays it! It has a damage of 10
-- The computer randomly chooses a card and plays it! It has a damage of 8
+- Eggbert chooses a card and plays it! It has a damage of 10.
+- The computer randomly chooses a card and plays it! It has a damage of 8.
 - Eggbert wins!
 
 The score is displayed: 
@@ -97,37 +110,87 @@ The score is displayed.
 The rounds won are displayed.
 
 
+## The `game` object
+
+For each part, think about:
+* What's the best data type for this property? Number? String? Array? object? boolean? Some crazy combination of these).  
+  * Hint/reminder: use a property when you want to "keep track" of something
+* Or should you create a method?
+  * Hint/reminder: use a method when you want to "do" something
+
+#### The game should be able to:
+
+1. keep a library of all the Pokemon cards that can be played (see the array in the "The Cards" section)
+2. know what cards have been played
+3. know how many cards are left to be played/dealt overall
+4. track points for both the player and the computer
+    Note: Points are determined by the following: If the player's card beats the computer's card, the player gets one point (and vice versa). If there is a tie, no one gets a point.
+5. track rounds
+6. track number of rounds won for both player and computer
+7. automatically deal 3 cards from the library to the player and 3 cards to the computer each round
+8. determine the winner of each play
+9. stop once there are no cards left or not enough to deal 3 to each the player and computer
 
 
-## Extra Challenge:  
+## The `player` object
+
+### The player should be able to:
+
+1. see their stats: their points and how many rounds they've won.
+2. see what cards they have been dealt/see what cards are left in their hand
+3. pick a card from the hand that has been dealt to them (thereby playing this card agaist the computer's card). The round ends once this has happened 3 times.
+4. receive new cards given to them by the game each round.
+5. see the cards that they have played in the past.
 
 
-#### Instructions
+## The "UI"
 
-Your job is to write a program that loops over an array of objects. Using the example array below, do the following:
+The user should see the following in the console:
 
-1. Iterate over each item in the array
-2. Filter out all objects where the `Language` property does not equal to `en` (stands for English)
-3. Loop over the filtered array and...
-4. Output each array item's key and value
+- the scoreboard after each round
+- the cards in the player's hand
+- the cards in the computer's hand
+- the cards that are in play
+- the winner of each round (or if there was a tie)
+- the winner of the game when the game is over 
+- the final score when the game is over
 
-__Hint:__ Remember, this is an array of objects. This means you'll need to use both array methods and object concepts to complete this. Also remember that some methods return new copies of arrays instead of changing their values in place.
 
 
-Don't be intimidated by the size of this array. Just use your knowledge of loops and how to access object properties using either dot syntax or bracket syntax.
 
-<hr />
+# Hungry for More?  
 
-# Hungry for More
-1. Display the past-played cards.
-2. Style your cards to actually look like cards and add an image to each.
-3. Research click events and set up your cards to "flip" from a card back (the image folder has a file called `cardback.png`) to the actual card image. We will officially cover this topic soon, just see what you can get done.
-4. Look at the pokemon cards and add additional Pokemon data to the card objects. Have your cards fight and win the ["real" Pokemon card game](http://www.wikihow.com/Play-With-Pok%C3%A9mon-Cards) way.
+
+## Expand your game
+
+1. We'll start working with actual web pages in the next couple of days, but see if you can make the UI stuff display on the webpage. 
+2. Display the past-played cards.
+3. Style your cards to actually look like cards and add an image to each.
+4. Research the DOM and event listeners and set up your cards to "flip" from a card back (the image folder has a file called `cardback.png`) to the actual card image. We will officially cover this topic in the next couple of days, but just see what you can get done.
+5. Look at the Pokemon cards and add additional Pokemon data to the card objects. Have your cards fight and win the ["real" Pokemon card game way](http://www.wikihow.com/Play-With-Pok%C3%A9mon-Cards).
+
+
+## Practice Array Methods
+
+Your job is to write a program that loops over an array of objects. Using the _**huge**_ example array below to do the following.
+
+1. Create a version of the array where all the objects that aren't English (the `Language` property does not equal to `en`) have been `.filter()`ed out.
+2. Use `.forEach()` to print out only the French entries (`Language === 'fr'`).
+3. Use `.every()` to confirm that no `TagID` is `0`.
+4. Use `.some()` to tell me whether or not there is an object with `TagID` === `46`
+5. Use `.map()` to create a new array based on the one below.  The new array will have strings formatted with the `TagName` and then the `Language` in parentheses. For example, the first element in the array should be the following string:     
+    `Walt Disney World (en)`
+
+__Hint:__ Remember, this is an array of objects. This means you'll need to use both array methods and object concepts to complete this. Also remember that some array methods return new copies of arrays instead of changing their values in place (i.e. instead of _mutating_ them).
+
+It's a big array but that's ok. We got tools now to handle big arrays.Use your knowledge of loops and how to access object properties using either dot syntax or bracket syntax.
+
+
 
 
 #### Starter code:
 
-This is the array of objects you'll need to work with:
+This is the array of objects you'll need to work with for "Hungry for More? > Practicing Array methods":
 
 ```js
 const tagMap = [
