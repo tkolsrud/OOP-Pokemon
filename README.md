@@ -183,7 +183,7 @@ Your job is to write a program that loops over an array of objects. Using the _*
 
 __Hint:__ Remember, this is an array of objects. This means you'll need to use both array methods and object concepts to complete this. Also remember that some array methods return new copies of arrays instead of changing their values in place (i.e. instead of _mutating_ them).
 
-It's a big array but that's ok. We got tools now to handle big arrays.Use your knowledge of loops and how to access object properties using either dot syntax or bracket syntax.
+It's a big array but that's ok. We got tools now to handle big arrays. Use your knowledge of loops and how to access object properties using either dot syntax or bracket syntax.
 
 
 
