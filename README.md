@@ -177,11 +177,11 @@ The user should see the following in the console:
 
 Use the _**huge**_ example array below to do the following.
 
-1. Use `.filter()` to create a version of the array that has only the "English" objects (i.e. the `Language` property is equal to `en`).
-2. Using `.forEach()` with some control flow, print out only strings for the French objects (`Language === 'fr'`).
-3. Use `.every()` to confirm that no `TagID` is `0`.
-4. Use `.some()` to determine whether or not there is an object with `TagID === 46`
-5. Use `.map()` to create a new array based on the one below.  The new array will have strings formatted with the `TagName` and then the `Language` in parentheses. For example, the first element in the array should be the following string:     
+1. Use [`.filter()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter) to create a version of the array that has only the "English" objects (i.e. the `Language` property is equal to `en`).
+2. Using [`.forEach()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach) with some control flow, print out only strings for the French objects (`Language === 'fr'`).
+3. Use [`.every()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/every) to confirm that no `TagID` is `0`.
+4. Use [`.some()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/some) to determine whether or not there is an object with `TagID === 46`
+5. Use [`.map()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) to create a new array based on the one below.  The new array will have strings formatted with the `TagName` and then the `Language` in parentheses. For example, the first element in the array should be the following string:     
     `Walt Disney World (en)`
 
 Remember that some array methods return new copies of arrays instead of changing their values in place (i.e. instead of _mutating_ them).
