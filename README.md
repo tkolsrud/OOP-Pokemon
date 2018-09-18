@@ -18,8 +18,7 @@ Topics: Using objects, the keyword `this` and methods to create a game while foc
 
 
 ## Object Oriented Programming
-
-For this lab, we're going to continue using objects, giving them data and behaviors (methods). They will interact with one another to make our game work!
+we're going to continue using objects, giving them data and behaviors (methods). They will interact with one another to make our game work!
 
 ## The basic idea
 
