@@ -163,34 +163,28 @@ The user should see the following in the console:
 
 ## Expand your game
 
-1. We'll start working with actual web pages in the next couple of days, but see if you can make the UI stuff display on the webpage. 
-2. Display the past-played cards.
-3. Style your cards to actually look like cards and add an image to each.
-4. Research the DOM and event listeners and set up your cards to "flip" from a card back (the image folder has a file called `cardback.png`) to the actual card image. We will officially cover this topic in the next couple of days, but just see what you can get done.
-5. Look at the Pokemon cards and add additional Pokemon data to the card objects. Have your cards fight and win the ["real" Pokemon card game way](http://www.wikihow.com/Play-With-Pok%C3%A9mon-Cards).
+1. We'll start working with actual web pages in the next couple of days, but see if you can make the UI stuff display on the webpage somehow.
+2. You could: 
+  * Display the past-played cards.
+  * Style your cards to _actually look like cards_ and add an image to each.
+  * Research the DOM and event listeners and set up your cards to "flip" from a card back (the image folder has a file called `cardback.png`) to the actual card image. We will officially cover this topic in the next couple of days, but just see what you can get done.
+3. Look at the Pokemon cards and add additional Pokemon data to the card objects. Have your cards fight and win the ["real" Pokemon card game way](http://www.wikihow.com/Play-With-Pok%C3%A9mon-Cards).
 
 
 ## Practice Array Methods
 
-Your job is to write a program that loops over an array of objects. Using the _**huge**_ example array below to do the following.
+Use the _**huge**_ example array below to do the following.
 
 1. Create a version of the array where all the objects that aren't English (the `Language` property does not equal to `en`) have been `.filter()`ed out.
 2. Use `.forEach()` to print out only the French entries (`Language === 'fr'`).
 3. Use `.every()` to confirm that no `TagID` is `0`.
-4. Use `.some()` to tell me whether or not there is an object with `TagID` === `46`
+4. Use `.some()` to determine whether or not there is an object with `TagID` === `46`
 5. Use `.map()` to create a new array based on the one below.  The new array will have strings formatted with the `TagName` and then the `Language` in parentheses. For example, the first element in the array should be the following string:     
     `Walt Disney World (en)`
 
-__Hint:__ Remember, this is an array of objects. This means you'll need to use both array methods and object concepts to complete this. Also remember that some array methods return new copies of arrays instead of changing their values in place (i.e. instead of _mutating_ them).
+Remember that some array methods return new copies of arrays instead of changing their values in place (i.e. instead of _mutating_ them).
 
-It's a big array but that's ok. We got tools now to handle big arrays. Use your knowledge of loops and how to access object properties using either dot syntax or bracket syntax.
-
-
-
-
-#### Starter code:
-
-This is the array of objects you'll need to work with for "Hungry for More? > Practicing Array methods":
+It's a big array but that's ok. We got tools now to handle big arrays. 
 
 ```js
 const tagMap = [
