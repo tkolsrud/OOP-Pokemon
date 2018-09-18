@@ -163,11 +163,13 @@ The user should see the following in the console:
 
 ## Expand your game
 
-1. We'll start working with actual web pages in the next couple of days, but see if you can make the UI stuff display on the webpage somehow.
-2. You could: 
+1. We'll start working with actual web pages in the next couple of days, but see if you can make the UI stuff display/update on the webpage somehow.
+2. You could also: 
   * Display the past-played cards.
   * Style your cards to _actually look like cards_ and add an image to each.
   * Research the DOM and event listeners and set up your cards to "flip" from a card back (the image folder has a file called `cardback.png`) to the actual card image. We will officially cover this topic in the next couple of days, but just see what you can get done.
+  * See if you can use clicking on various HTML elements cause the game to play.
+  * Do other cool stuff!
 3. Look at the Pokemon cards and add additional Pokemon data to the card objects. Have your cards fight and win the ["real" Pokemon card game way](http://www.wikihow.com/Play-With-Pok%C3%A9mon-Cards).
 
 
@@ -175,7 +177,6 @@ The user should see the following in the console:
 
 Use the _**huge**_ example array below to do the following.
 
-1. Create a version of the array where all the objects that aren't English (the `Language` property does not equal to `en`) have been `.filter()`ed out.
 1. Use `.filter()` to create a version of the array that has only the "English" objects (i.e. the `Language` property is equal to `en`).
 2. Using `.forEach()` with some control flow, print out only strings for the French objects (`Language === 'fr'`).
 3. Use `.every()` to confirm that no `TagID` is `0`.
