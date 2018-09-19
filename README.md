@@ -18,7 +18,7 @@ Topics: Using objects, the keyword `this` and methods to create a game while foc
 
 
 ## Object Oriented Programming
-we're going to continue using objects, giving them data and behaviors (methods). They will interact with one another to make our game work!
+We're going to continue using objects, giving them data and behaviors (methods). They will interact with one another to make our game work!
 
 ## The basic idea
 
@@ -91,7 +91,7 @@ Here is the array of cards.  Instructions below.
 
 ## Example Play
 
-- There are 10 Pokemon cards in the deck
+- There are 18 Pokemon cards in the deck
 - Eggbert (the player) is dealt three random cards from the deck
 - The computer is dealt three random cards from the deck
 - Eggbert chooses a card and plays it! It has a damage of 10.
