@@ -128,7 +128,7 @@ class Player {
     }
 
     draw() {
-        while (this.hand.length < 3) {
+        if (this.hand.length === 0) {
             this.hand.push(this.deck.draw());
         }
     }
@@ -166,8 +166,12 @@ class Game {
             console.warn("Player wins the Game!!");
         }
         // complete his method()
-        if (this.player.roundsWon < this.cpu.roundsWon) {
+        else if (this.player.roundsWon < this.cpu.roundsWon) {
             console.warn("CPU wins the game!");
+        }
+
+        else {
+            console.warn("The game is a tie!");
         }
     }
 
