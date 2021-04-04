@@ -6,8 +6,11 @@ const logoToggle = function logoToggle() {
 
 setInterval(logoToggle, 100);
 
+
+
 // Variables
-let input = null;
+let inputPlayer = null;
+let inputCpu = null;
 let playerCard = null;
 let cpuCard = null;
 const pokemonData = [
@@ -98,11 +101,7 @@ class Deck {
 
     draw() {
         this.shuffle();
-        return this.cards.shift();
-    }
-
-    discard(card) {
-        return this.graveyard.push(card);
+        return this.cards.splice(0, 3);
     }
 
     // This needs external citation for Dalton and the original author:
@@ -132,19 +131,21 @@ class Player {
     constructor(name, deck) {
         this.hand = [];
         this.roundsWon = 0;
+        this.points = 0;
 
         this.name = name;
         this.deck = deck;
     }
 
     draw() {
-        if (this.hand.length === 0) {
+        if (this.hand.length === 0 || this.hand[0].length === 0) {
             this.hand.push(this.deck.draw());
         }
     }
 
     discard(card) {
-        this.deck.discard(card); // DON'T UNDERSTAND THIS FUNCTION YET
+        this.hand.shift(card)
+        return this.deck.graveyard.push(card);
     }
 
     playCard(input) {
@@ -152,6 +153,9 @@ class Player {
         return this.hand.splice(input, 1)[0]
     }
 
+    length() {
+        return this.hand.length;
+    }
 };
 
 // Class representing the Game Object
@@ -166,10 +170,12 @@ class Game {
 
     startGame() {
         console.warn("The Game has begun!");
-        while (this.player.deck.length() > 0) {
+        if (this.player.deck.length() > 0) {  // This while loop is breaking your code
             this.startRound();
-        };
-        this.bigWinner();
+        }
+        else {
+            this.bigWinner();
+        }
     }
 
     bigWinner() {
@@ -187,46 +193,96 @@ class Game {
     }
 
     startRound() {
-        const points = {
-            player: 0,
-            cpu: 0,
-        }
+        this.player.points = 0;
+        this.cpu.points = 0;
+
         // ADD A PROMPT WITH A BUTTON HERE. MAYBE ADD A METHOD TO INITIALIZE THE PROMPT, WHICH THEN INITIALIZES THE DRAW
-        this.player.draw();
-        this.cpu.draw();
+        console.log("press ENTER to draw cards!");
 
-        while (this.player.hand.length > 0 || this.cpu.hand.length > 0) {
-            // Needs logic for player choosing car - cpu random choice
-            const playerCard = this.player.playCard(0);   // PROMPT FOR USER TO SELECT INDEX OF CARD IN HAND ( PROMPT VALUE - 1 FOR ZERO COUNT)
-            const cpuCard = this.cpu.playCard(0);         // MATH.RANDOM TO CHOOSE CARD FOR COMPUTER
 
-            if (playerCard.damage > cpuCard.damage) {
-                playerCard.attack();
-                console.log("Player wins!");
-                points.player++;
+        for (let i = 0; i < 4; i++) {
+            // playRound();
+            if (this.player.hand[0].length === 3 || this.cpu.hand[0].length === 3) {
+                inputPlayer = window.prompt(`YOUR HAND:\n(1) ${this.player.hand[0][0].name}\n(2) ${this.player.hand[0][1].name}\n(3) ${this.player.hand[0][2].name}`);
+                playerCard = this.player.hand[0][inputPlayer - 1];
+                inputCpu = Math.floor(Math.random() * 3)
+                cpuCard = this.cpu.hand[0][inputCpu];
+                if (playerCard.damage > cpuCard.damage) {
+                    playerCard.attack();
+                    console.log("Player wins!");
+                    game.player.points++;
+                }
+                if (playerCard.damage < cpuCard.damage) {
+                    cpuCard.attack();
+                    console.log("Cpu wins!");
+                    game.cpu.points++;
+                }
+                if (playerCard.damage === cpuCard.damage) {
+                    console.log("It's a tie!");
+                }
+                game.player.deck.graveyard.push(game.player.hand[0].splice(inputPlayer - 1, 1));
+                game.cpu.deck.graveyard.push(game.cpu.hand[0].splice(inputCpu, 1));
             }
-            if (playerCard.damage < cpuCard.damage) {
-                cpuCard.attack();
-                console.log("Cpu wins!");
-                points.cpu++;
+
+            else if (this.player.hand[0].length === 2 || this.cpu.hand[0].length === 2) {
+                inputPlayer = window.prompt(`YOUR HAND:\n(1) ${this.player.hand[0][0].name}\n(2) ${this.player.hand[0][1].name}`);
+                playerCard = this.player.hand[0][inputPlayer - 1];
+                inputCpu = Math.floor(Math.random() * 2)
+                cpuCard = this.cpu.hand[0][inputCpu];
+                if (playerCard.damage > cpuCard.damage) {
+                    playerCard.attack();
+                    console.log("Player wins!");
+                    game.player.points++;
+                }
+                if (playerCard.damage < cpuCard.damage) {
+                    cpuCard.attack();
+                    console.log("Cpu wins!");
+                    game.cpu.points++;
+                }
+                if (playerCard.damage === cpuCard.damage) {
+                    console.log("It's a tie!");
+                }
+                game.player.deck.graveyard.push(game.player.hand[0].splice(inputPlayer - 1, 1));
+                game.cpu.deck.graveyard.push(game.cpu.hand[0].splice(inputCpu, 1));
             }
-            else {
-                console.log("It's a tie");
+
+            else if (this.player.hand[0].length === 1 || this.cpu.hand[0].length === 1) {
+                inputPlayer = window.prompt(`YOUR HAND:\n(1) ${this.player.hand[0][0].name}`);
+                playerCard = this.player.hand[0][0];
+                cpuCard = this.cpu.hand[0][0];
+                if (playerCard.damage > cpuCard.damage) {
+                    playerCard.attack();
+                    console.log("Player wins!");
+                    game.player.points++;
+                }
+                if (playerCard.damage < cpuCard.damage) {
+                    cpuCard.attack();
+                    console.log("Cpu wins!");
+                    game.cpu.points++;
+                }
+                if (playerCard.damage === cpuCard.damage) {
+                    console.log("It's a tie!");
+                }
+                game.player.deck.graveyard.push(game.player.hand[0].shift());
+                game.cpu.deck.graveyard.push(game.cpu.hand[0].shift());
+
             }
-            this.player.discard(playerCard);
-            this.cpu.discard(cpuCard);
+
+
+
         }
-
-        if (points.player > points.cpu) {
+        if (this.player.points > this.cpu.points) {
             console.warn("Player Wins Round!");
-            this.player.roundsWon++;
-        }
-        if (points.player < points.cpu) {
+            console.log("press ENTER to draw new cards!");
+            return this.player.roundsWon++;
+        } else {
             console.warn("Cpu Wins Round!");
-            this.cpu.roundsWon++;
+            console.log("press ENTER to draw new cards!");
+            return this.cpu.roundsWon++;
         }
-    }
-};
+    };
+}
+
 
 /* 
 1. Finish bigWinner method ***
@@ -243,6 +299,65 @@ class Game {
 
 
 
+
+
+
+// const playRound = function playRound() {
+//     if (this.player.hand[0].length === 3 || this.cpu.hand[0].length === 3) {
+//         input = window.prompt(`YOUR HAND:\n(1) ${this.player.hand[0][0].name}\n(2) ${this.player.hand[0][1].name}\n(3) ${this.player.hand[0][2].name}`);
+//         playerCard = this.player.hand[input];
+//         cpuCard = this.cpu.playCard(this.cpu.hand[0][Math.floor(Math.random() * 3 + 1)]);
+//         compareCards();
+//         game.player.discard(playerCard);
+//         game.cpu.discard(cpuCard);
+//     }
+
+//     if (this.player.hand[0].length === 2 || this.cpu.hand[0].length === 2) {
+//         input = window.prompt(`YOUR HAND:\n(1) ${this.player.hand[0][0].name}\n(2) ${this.player.hand[0][1].name}`);
+//         playerCard = this.player.hand[input];
+//         cpuCard = this.cpu.playCard(this.cpu.hand[0][Math.floor(Math.random() * 2 + 1)]);
+//         compareCards();
+//         game.player.discard(playerCard);
+//         game.cpu.discard(cpuCard);
+//     }
+
+//     if (this.player.hand[0].length === 1 || this.cpu.hand[0].length === 1) {
+//         input = window.prompt(`YOUR HAND:\n(1) ${this.player.hand[0][0].name}`);
+//         playerCard = this.player.hand[input];
+//         cpuCard = this.cpu.playCard(this.cpu.hand[0][Math.floor(Math.random() * 2 + 1)]);
+//         compareCards();
+//         game.player.discard(playerCard);
+//         game.cpu.discard(cpuCard);
+//     }
+
+// }
+
+
+// const compareCards = function compareCards() {
+//     if (playerCard.damage > cpuCard.damage) {
+//         playerCard.attack();
+//         console.log("Player wins!");
+//         game.player.points++;
+//     }
+//     if (playerCard.damage < cpuCard.damage) {
+//         cpuCard.attack();
+//         console.log("Cpu wins!");
+//         game.cpu.points++;
+//     }
+//     if (playerCard.damage === cpuCard.damage) {
+//         console.log("It's a tie!");
+//     }
+
+// }
+
+
+
+
+
+
+
+
+
 const playerDeck = new Deck();
 playerDeck.generateCards(pokemonData);
 
@@ -253,3 +368,7 @@ const eggbert = new Player("Eggbert", playerDeck);
 const cpu = new Player("CPU", cpuDeck);
 
 const game = new Game(eggbert, cpu);
+
+$('body').on("click", game.player.draw());
+$('body').on("click", game.cpu.draw());
+// $('body').on("click", game.startRound());
