@@ -1,5 +1,15 @@
 // console.log("braindead");
 
+const logoToggle = function logoToggle() {
+    $('#startLogo').fadeToggle(1000).fadeToggle(1000);
+};
+
+setInterval(logoToggle, 100);
+
+// Variables
+let input = null;
+let playerCard = null;
+let cpuCard = null;
 const pokemonData = [
     {
         name: "Bulbasaur",
@@ -66,7 +76,7 @@ class Card {
     }
 
     attack() {
-        return console.log(`${this.name} causes ${this.damage} damage!`);
+        return console.log(`*** ${this.name} causes ${this.damage} damage ***`);
     }
 };
 
@@ -137,8 +147,9 @@ class Player {
         this.deck.discard(card); // DON'T UNDERSTAND THIS FUNCTION YET
     }
 
-    playCard(index) {
-        return this.hand.splice(index, 1)[0]
+    playCard(input) {
+        input = input - 1;
+        return this.hand.splice(input, 1)[0]
     }
 
 };
@@ -165,7 +176,7 @@ class Game {
         if (this.player.roundsWon > this.cpu.roundsWon) {
             console.warn("Player wins the Game!!");
         }
-        // complete his method()
+
         else if (this.player.roundsWon < this.cpu.roundsWon) {
             console.warn("CPU wins the game!");
         }
@@ -180,26 +191,27 @@ class Game {
             player: 0,
             cpu: 0,
         }
-
+        // ADD A PROMPT WITH A BUTTON HERE. MAYBE ADD A METHOD TO INITIALIZE THE PROMPT, WHICH THEN INITIALIZES THE DRAW
         this.player.draw();
         this.cpu.draw();
 
         while (this.player.hand.length > 0 || this.cpu.hand.length > 0) {
-            const playerCard = this.player.playCard(0);
-            const cpuCard = this.cpu.playCard(0);
+            // Needs logic for player choosing car - cpu random choice
+            const playerCard = this.player.playCard(0);   // PROMPT FOR USER TO SELECT INDEX OF CARD IN HAND ( PROMPT VALUE - 1 FOR ZERO COUNT)
+            const cpuCard = this.cpu.playCard(0);         // MATH.RANDOM TO CHOOSE CARD FOR COMPUTER
 
             if (playerCard.damage > cpuCard.damage) {
-                console.log("Player wins!");
                 playerCard.attack();
+                console.log("Player wins!");
                 points.player++;
             }
             if (playerCard.damage < cpuCard.damage) {
-                console.log("Cpu wins!");
                 cpuCard.attack();
+                console.log("Cpu wins!");
                 points.cpu++;
             }
-            else {  // Tom's new code that discards and draws without roundsWon++
-                console.log("It's a tie!");
+            else {
+                console.log("It's a tie");
             }
             this.player.discard(playerCard);
             this.cpu.discard(cpuCard);
@@ -219,9 +231,13 @@ class Game {
 /* 
 1. Finish bigWinner method ***
 2. Logic for player chooses which card to play
+    - Prompt a window that says "Draw Cards" with a button that says "draw" (in the start round function?)
+    - Use template literal to prompt the choices in their hand to the player, then take the user's numerical input to name the index of the care they are to play.
 3. Logic for cpu random choice which card to play
-4. Citation for shuffle function
-5. Go through and write docStrings / make sure you have a thorough understanding of Dalton's code
+    - in the same function, implement Math.floor(Math.random()) for a number between 0-3 for the computer's play
+4. Finish tweaking to fit assignment's UI requirements
+5. Citation for shuffle function
+6. Go through and write docStrings / make sure you have a thorough understanding of Dalton's code
  */
 
 

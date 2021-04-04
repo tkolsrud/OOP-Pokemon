@@ -1,0 +1,28 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    background-color: black;
+}
+
+p {
+    display: flex;
+    position: absolute;
+    height: 100%;
+    z-index: 3;
+    color: white;
+    align-items: center;
+    justify-content: center;
+    color: red;
+    margin-top: 250px;
+    font-family: 'Permanent Marker', cursive;
+    animation: fadeout ease 4s;
+}
+
+img {
+    position: absolute;
+}
