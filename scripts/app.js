@@ -162,33 +162,15 @@ class Game {
     }
 
     startGame() {
-        console.log('Welcome to Pokemon the Card Game... The Game!\nPress ENTER to Draw Cards\nPress the SPACEBAR to check your hand\nthen enter (1) (2) or (3) in the input to play a card\n\nDraw some cards to get started!');
+        console.log('Welcome to Pokemon the Card Game... The Game!\nPress ENTER to Draw Cards\nPress the SPACEBAR to check your hand\nthen enter (1) (2) or (3) in the input to play a card\n\nClick the picture and hit ENTER to get started!');
+
     }
-
 }
-
-
-
-
-
-
-
 
 
 
 /* FUNCTIONS ***************************** */
 
-
-/* 
-Start game must
-1. greet the player and give instructions
-2. log the player to draw cards
- */
-const startGame = function startGame() {
-    console.log('Welcome to Pokemon the Card Game... The Game!\nPress the SPACEBAR to Draw Cards\nPress ENTER to check your hand\nthen enter (1) (2) or (3) in the input to play a card\n\nDraw some cards to get started!');
-
-
-}
 
 
 
@@ -224,7 +206,7 @@ const checkHand = function checkHand(key) {
         if (game.player.deck.cards.length > 0) {
             while (game.player.hand.length > 0) {
                 if (game.player.hand.length === 3 || game.cpu.hand.length === 3) {
-                    inputPlayer = window.prompt(`YOUR HAND:\n(1) ${game.player.hand[0].name}\n(2) ${game.player.hand[1].name}\n(3) ${game.player.hand[2].name}`);
+                    inputPlayer = window.prompt(`YOUR HAND:\n(1) NAME: ${game.player.hand[0].name} - DAMAGE: ${game.player.hand[0].damage}\n(2) NAME: ${game.player.hand[1].name} - DAMAGE: ${game.player.hand[1].damage}\n(3) NAME: ${game.player.hand[2].name} - DAMAGE: ${game.player.hand[2].damage}`);
                     playerCard = game.player.hand[inputPlayer - 1];
                     inputCpu = Math.floor(Math.random() * 3)
                     cpuCard = game.cpu.hand[inputCpu];
@@ -235,7 +217,7 @@ const checkHand = function checkHand(key) {
                 }
 
                 else if (game.player.hand.length === 2 || game.cpu.hand.length === 2) {
-                    inputPlayer = window.prompt(`YOUR HAND:\n(1) ${game.player.hand[0].name}\n(2) ${game.player.hand[1].name}`);
+                    inputPlayer = window.prompt(`YOUR HAND:\n(1) NAME: ${game.player.hand[0].name} - DAMAGE: ${game.player.hand[0].damage}\n(2) NAME: ${game.player.hand[1].name} - DAMAGE: ${game.player.hand[1].damage}`);
                     playerCard = game.player.hand[inputPlayer - 1];
                     inputCpu = Math.floor(Math.random() * 2)
                     cpuCard = game.cpu.hand[inputCpu];
@@ -246,7 +228,7 @@ const checkHand = function checkHand(key) {
                 }
 
                 else if (game.player.hand.length === 1 || game.cpu.hand.length === 1) {
-                    inputPlayer = window.prompt(`YOUR HAND:\n(1) ${game.player.hand[0].name}`);
+                    inputPlayer = window.prompt(`YOUR HAND:\n(1) NAME: ${game.player.hand[0].name} - DAMAGE: ${game.player.hand[0].damage}`);
                     playerCard = game.player.hand[0];
                     cpuCard = game.cpu.hand[0];
                     compareCards();
@@ -261,7 +243,7 @@ const checkHand = function checkHand(key) {
         if (game.player.deck.cards.length === 0) {
             while (game.player.hand.length > 0) {
                 if (game.player.hand.length === 3 || game.cpu.hand.length === 3) {
-                    inputPlayer = window.prompt(`YOUR HAND:\n(1) ${game.player.hand[0].name}\n(2) ${game.player.hand[1].name}\n(3) ${game.player.hand[2].name}`);
+                    inputPlayer = window.prompt(`YOUR HAND:\n(1) NAME: ${game.player.hand[0].name} - DAMAGE: ${game.player.hand[0].damage}\n(2) NAME: ${game.player.hand[1].name} - DAMAGE: ${game.player.hand[1].damage}\n(3) NAME: ${game.player.hand[2].name} - DAMAGE: ${game.player.hand[2].damage}`);
                     playerCard = game.player.hand[inputPlayer - 1];
                     inputCpu = Math.floor(Math.random() * 3)
                     cpuCard = game.cpu.hand[inputCpu];
@@ -272,7 +254,7 @@ const checkHand = function checkHand(key) {
                 }
 
                 else if (game.player.hand.length === 2 || game.cpu.hand.length === 2) {
-                    inputPlayer = window.prompt(`YOUR HAND:\n(1) ${game.player.hand[0].name}\n(2) ${game.player.hand[1].name}`);
+                    inputPlayer = window.prompt(`YOUR HAND:\n(1) NAME: ${game.player.hand[0].name} - DAMAGE: ${game.player.hand[0].damage}\n(2) NAME: ${game.player.hand[1].name} - DAMAGE: ${game.player.hand[1].damage}`);
                     playerCard = game.player.hand[inputPlayer - 1];
                     inputCpu = Math.floor(Math.random() * 2)
                     cpuCard = game.cpu.hand[inputCpu];
@@ -283,7 +265,7 @@ const checkHand = function checkHand(key) {
                 }
 
                 else if (game.player.hand.length === 1 || game.cpu.hand.length === 1) {
-                    inputPlayer = window.prompt(`YOUR HAND:\n(1) ${game.player.hand[0].name}`);
+                    inputPlayer = window.prompt(`YOUR HAND:\n(1) NAME: ${game.player.hand[0].name} - DAMAGE: ${game.player.hand[0].damage}`);
                     playerCard = game.player.hand[0];
                     cpuCard = game.cpu.hand[0];
                     compareCards();
@@ -298,17 +280,20 @@ const checkHand = function checkHand(key) {
         if (game.player.deck.cards.length === 0 && game.player.hand.length === 0) {
             if (game.player.roundsWon > game.cpu.roundsWon) {
                 console.error("Player wins the Game!!");
+                console.log(`FINAL SCORE:\nPlayer: ${game.player.roundsWon} Rounds Won\nCpu: ${game.cpu.roundsWon} Rounds Won`);
                 console.log("Refresh page to play again!");
             }
 
             else if (game.player.roundsWon < game.cpu.roundsWon) {
                 console.error("CPU wins the game!");
+                console.log(`FINAL SCORE:\nPlayer: ${game.player.roundsWon} Rounds Won\nCpu: ${game.cpu.roundsWon} Rounds Won`);
                 console.log("Refresh page to play again!");
             }
 
             else {
                 console.error("The game is a tie!");
-                console.log("Refresh page to play again!");
+                console.log(`FINAL SCORE:\nPlayer: ${game.player.roundsWon} Rounds Won\nCpu: ${game.cpu.roundsWon} Rounds Won`);
+                console.log("Refresh the page to play again!");
             }
         }
     }
@@ -320,15 +305,15 @@ document.addEventListener('keypress', checkHand);
 
 const compareCards = function compareCards() {
     if (playerCard.damage > cpuCard.damage) {
-        console.log(`Player played ${playerCard.name}!\nCpu played ${cpuCard.name}!\nPlayer wins!\nPress the SPACEBAR to check your hand`);
+        console.log(`** Player played ${playerCard.name}! **\n** Cpu played ${cpuCard.name}! **\n\nPlayer wins!\n\nPress the SPACEBAR to check your hand`);
         game.player.points++;
     }
     if (playerCard.damage < cpuCard.damage) {
-        console.log(`Player played ${playerCard.name}!\nCpu played ${cpuCard.name}!\nCpu wins!\nPress the SPACEBAR to check your hand`);
+        console.log(`** Player played ${playerCard.name}! **\n** Cpu played ${cpuCard.name}! **\n\nCpu wins!\n\nPress the SPACEBAR to check your hand`);
         game.cpu.points++;
     }
     if (playerCard.damage === cpuCard.damage) {
-        console.log(`Player played ${playerCard.name}!\nCpu played ${cpuCard.name}!\nIt's a tie!\nPress the SPACEBAR to check your hand`);
+        console.log(`** Player played ${playerCard.name}! **\n** Cpu played ${cpuCard.name}! **\n\nIt's a tie!\n\nPress the SPACEBAR to check your hand`);
     }
 }
 
@@ -339,17 +324,21 @@ const compareCards = function compareCards() {
 const roundResult = function roundResult() {
     if (game.player.hand.length === 0) {
         if (game.player.points > game.cpu.points) {
+            game.player.roundsWon++;
             console.warn("Player Wins Round!");
+            console.log(`Player Score: ${game.player.roundsWon} Rounds Won\nCpu Score: ${game.cpu.roundsWon} Rounds Won`);
             console.log("Press ENTER to draw new cards!");
-            return game.player.roundsWon++;
         }
         if (game.player.points < game.cpu.points) {
+            game.cpu.roundsWon++;
             console.warn("Cpu Wins Round!")
+            console.log(`Player Score: ${game.player.roundsWon} Rounds Won\nCpu Score: ${game.cpu.roundsWon} Rounds Won`);
             console.log("Press ENTER to draw new cards!");
-            return game.cpu.roundsWon++;
+
         }
         else {
             console.warn("The Round Is A Tie!");
+            console.log(`Player Score: ${game.player.roundsWon} Rounds Won\nCpu Score: ${game.cpu.roundsWon} Rounds Won`);
             console.log("Press ENTER to draw new cards!");
         }
     }
