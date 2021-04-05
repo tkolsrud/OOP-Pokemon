@@ -1,4 +1,4 @@
-console.log("[app.js] loaded");
+// console.log("[app.js] loaded");
 
 const logoToggle = function logoToggle() {
     $('p').fadeToggle(1000).fadeToggle(1000);
@@ -110,6 +110,10 @@ class Deck {
         return this.cards.splice(0, 3);
     }
 
+    /**
+     *  @author  Mike Bostock  https://bost.ocks.org/mike/shuffle/
+     *  @author Dalton Hart
+     */
     shuffle() {
         let length = this.cards.length;
         let element;
