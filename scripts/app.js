@@ -1,5 +1,13 @@
 console.log("[app.js] loaded");
 
+const logoToggle = function logoToggle() {
+    $('p').fadeToggle(1000).fadeToggle(1000);
+};
+
+setInterval(logoToggle, 100);
+
+
+
 /* You're going to have 3 functions:
     1. The function that's automatically invoked, that intializes the game
     2. The function that draws cards into the player decks and prompts the player to start a round
@@ -162,7 +170,7 @@ class Game {
     }
 
     startGame() {
-        console.log('Welcome to Pokemon the Card Game... The Game!\nPress ENTER to Draw Cards\nPress the SPACEBAR to check your hand\nthen enter (1) (2) or (3) in the input to play a card\n\nClick the picture and hit ENTER to get started!');
+        console.log('Welcome to Pokemon the Card Game... The Game!\nPress ENTER to Draw Cards\nPress the SPACEBAR to check your hand\nThen enter (1) (2) or (3) in the input to play a card\n\nClick the picture and hit ENTER to get started!');
 
     }
 }
@@ -199,10 +207,6 @@ OR
 const checkHand = function checkHand(key) {
     if (key.keyCode == '32') {
 
-        game.player.points = 0;
-        game.cpu.points = 0;
-
-
         if (game.player.deck.cards.length > 0) {
             while (game.player.hand.length > 0) {
                 if (game.player.hand.length === 3 || game.cpu.hand.length === 3) {
@@ -211,6 +215,7 @@ const checkHand = function checkHand(key) {
                     inputCpu = Math.floor(Math.random() * 3)
                     cpuCard = game.cpu.hand[inputCpu];
                     compareCards();
+                    console.log("Press the SPACEBAR to check your hand");
                     game.player.deck.graveyard.push(game.player.hand.splice(inputPlayer - 1, 1));
                     game.cpu.deck.graveyard.push(game.cpu.hand.splice(inputCpu, 1));
                     break;
@@ -222,6 +227,7 @@ const checkHand = function checkHand(key) {
                     inputCpu = Math.floor(Math.random() * 2)
                     cpuCard = game.cpu.hand[inputCpu];
                     compareCards();
+                    console.log("Press the SPACEBAR to check your hand");
                     game.player.deck.graveyard.push(game.player.hand.splice(inputPlayer - 1, 1));
                     game.cpu.deck.graveyard.push(game.cpu.hand.splice(inputCpu, 1));
                     break;
@@ -235,6 +241,8 @@ const checkHand = function checkHand(key) {
                     game.player.deck.graveyard.push(game.player.hand.shift());
                     game.cpu.deck.graveyard.push(game.cpu.hand.shift());
                     roundResult();
+                    game.player.points = 0;
+                    game.cpu.points = 0;
                     break;
                 }
             }
@@ -248,6 +256,7 @@ const checkHand = function checkHand(key) {
                     inputCpu = Math.floor(Math.random() * 3)
                     cpuCard = game.cpu.hand[inputCpu];
                     compareCards();
+                    console.log("Press the SPACEBAR to check your hand");
                     game.player.deck.graveyard.push(game.player.hand.splice(inputPlayer - 1, 1));
                     game.cpu.deck.graveyard.push(game.cpu.hand.splice(inputCpu, 1));
                     break;
@@ -259,6 +268,7 @@ const checkHand = function checkHand(key) {
                     inputCpu = Math.floor(Math.random() * 2)
                     cpuCard = game.cpu.hand[inputCpu];
                     compareCards();
+                    console.log("Press the SPACEBAR to check your hand");
                     game.player.deck.graveyard.push(game.player.hand.splice(inputPlayer - 1, 1));
                     game.cpu.deck.graveyard.push(game.cpu.hand.splice(inputCpu, 1));
                     break;
@@ -272,6 +282,8 @@ const checkHand = function checkHand(key) {
                     game.player.deck.graveyard.push(game.player.hand.shift());
                     game.cpu.deck.graveyard.push(game.cpu.hand.shift());
                     finalRoundResult()
+                    game.player.points = 0;
+                    game.cpu.points = 0;
                     break;
                 }
             }
@@ -305,15 +317,15 @@ document.addEventListener('keypress', checkHand);
 
 const compareCards = function compareCards() {
     if (playerCard.damage > cpuCard.damage) {
-        console.log(`** Player played ${playerCard.name}! **\n** Cpu played ${cpuCard.name}! **\n\nPlayer wins!\n\nPress the SPACEBAR to check your hand`);
+        console.log(`** Player played ${playerCard.name}! **\n** Cpu played ${cpuCard.name}! **\n\nPlayer wins!`);
         game.player.points++;
     }
     if (playerCard.damage < cpuCard.damage) {
-        console.log(`** Player played ${playerCard.name}! **\n** Cpu played ${cpuCard.name}! **\n\nCpu wins!\n\nPress the SPACEBAR to check your hand`);
+        console.log(`** Player played ${playerCard.name}! **\n** Cpu played ${cpuCard.name}! **\n\nCpu wins!`);
         game.cpu.points++;
     }
     if (playerCard.damage === cpuCard.damage) {
-        console.log(`** Player played ${playerCard.name}! **\n** Cpu played ${cpuCard.name}! **\n\nIt's a tie!\n\nPress the SPACEBAR to check your hand`);
+        console.log(`** Player played ${playerCard.name}! **\n** Cpu played ${cpuCard.name}! **\n\nIt's a tie!`);
     }
 }
 
@@ -336,7 +348,7 @@ const roundResult = function roundResult() {
             console.log("Press ENTER to draw new cards!");
 
         }
-        else {
+        if (game.player.points === game.cpu.points) {
             console.warn("The Round Is A Tie!");
             console.log(`Player Score: ${game.player.roundsWon} Rounds Won\nCpu Score: ${game.cpu.roundsWon} Rounds Won`);
             console.log("Press ENTER to draw new cards!");
